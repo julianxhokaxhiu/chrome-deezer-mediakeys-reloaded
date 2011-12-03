@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<title>Deezer Mediakeys Reloaded Options</title>
+		<link type="text/css" rel="stylesheet" href="css/jquery.jgrowl.css" />
+		<link type="text/css" rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery.jgrowl.js"></script>
+		<script type="text/javascript" src="js/const.js"></script>
+		<script type="text/javascript">
+			var loadConfig;
+			var saveConfig;
+			
+			jQuery(function($){
+				loadConfig = function(r){
+					// PLAY/PAUSE
+					var o = $.parseJSON(window.localStorage.getItem(CFG.PLAY));
+					if(!o||r)o={ctrlKey:true,altKey:true,shiftKey:false,keyCode:67};
+					$('#ctrl_pp').attr('checked',o.ctrlKey);
+					$('#alt_pp').attr('checked',o.altKey);
+					$('#shift_pp').attr('checked',o.shiftKey);
+					$('#key_pp').val(String.fromCharCode(o.keyCode).toUpperCase());
+					// PREV
+					o = $.parseJSON(window.localStorage.getItem(CFG.PREV));
+					if(!o||r)o={ctrlKey:true,altKey:true,shiftKey:false,keyCode:88};
+					$('#ctrl_prev').attr('checked',o.ctrlKey);
+					$('#alt_prev').attr('checked',o.altKey);
+					$('#shift_prev').attr('checked',o.shiftKey);
+					$('#key_prev').val(String.fromCharCode(o.keyCode).toUpperCase());
+					// NEXT
+					o = $.parseJSON(window.localStorage.getItem(CFG.NEXT));
+					if(!o||r)o={ctrlKey:true,altKey:true,shiftKey:false,keyCode:66};
+					$('#ctrl_next').attr('checked',o.ctrlKey);
+					$('#alt_next').attr('checked',o.altKey);
+					$('#shift_next').attr('checked',o.shiftKey);
+					$('#key_next').val(String.fromCharCode(o.keyCode).toUpperCase());
+				};
+				saveConfig = function(){
+					if($('#key_pp').val().match(/[A-Z0-9]/))window.localStorage.setItem(CFG.PLAY,JSON.stringify({ctrlKey:$('#ctrl_pp').attr('checked'),altKey:$('#alt_pp').attr('checked'),shiftKey:$('#shift_pp').attr('checked'),keyCode:$('#key_pp').val().charCodeAt(0)}));
+					else alert('Play/Pause Key not correct');
+					if($('#key_prev').val().match(/[A-Z0-9]/))window.localStorage.setItem(CFG.PREV,JSON.stringify({ctrlKey:$('#ctrl_prev').attr('checked'),altKey:$('#alt_prev').attr('checked'),shiftKey:$('#shift_prev').attr('checked'),keyCode:$('#key_prev').val().charCodeAt(0)}));
+					else alert('Prev Key not correct');
+					if($('#key_next').val().match(/[A-Z0-9]/))window.localStorage.setItem(CFG.NEXT,JSON.stringify({ctrlKey:$('#ctrl_next').attr('checked'),altKey:$('#alt_next').attr('checked'),shiftKey:$('#shift_next').attr('checked'),keyCode:$('#key_next').val().charCodeAt(0)}));
+					else alert('Next Key not correct');
+				};
+				viewAlert = function(s){
+					$.jGrowl('Operation complete!',{header:s+' settings',position:'bottom-right'});
+				};
+				$('.key').keydown(function(e){
+					if(e.keyCode=='13')e.preventDefault();
+					$(this).val('');
+				}).keyup(function(e){
+					$(this).val($(this).val().toUpperCase());
+				});
+				$('#save').click(function(){saveConfig();viewAlert('Save')});
+				$('#load').click(function(){loadConfig();viewAlert('Load')});
+				$('#reset').click(function(){loadConfig(true);viewAlert('Reset')});
+				loadConfig();
+			});
+		</script>
+	</head>
+	<body>
+		<fieldset>
+			<ul class="keys">
+				<li>
+					<h1>Deezer Mediakeys<br/>Reloaded</h1>
+				</li>
+				<li class="panel play">
+					<h2>Play/Pause</h2>
+					<ul>
+						<li class="first">
+							<label>CTRL</label>
+							<input id="ctrl_pp" type="checkbox" />
+						</li>
+						<li>
+							<label>ALT</label>
+							<input id="alt_pp" type="checkbox" />
+						</li>
+						<li>
+							<label>SHIFT</label>
+							<input id="shift_pp" type="checkbox" />
+						</li>
+						<li class="last">
+							<label>KEY</label>
+							<input id="key_pp" class="key" type="text" />
+						</li>
+					</ul>
+				</li>
+				<li class="panel prev">
+					<h2>Prev</h2>
+					<ul>
+						<li class="first">
+							<label>CTRL</label>
+							<input id="ctrl_prev" type="checkbox" />
+						</li>
+						<li>
+							<label>ALT</label>
+							<input id="alt_prev" type="checkbox" />
+						</li>
+						<li>
+							<label>SHIFT</label>
+							<input id="shift_prev" type="checkbox" />
+						</li>
+						<li class="last">
+							<label>KEY</label>
+							<input id="key_prev" class="key" type="text" />
+						</li>
+					</ul>
+				</li>
+				<li class="panel next">
+					<h2>Next</h2>
+					<ul>
+						<li class="first">
+							<label>CTRL</label>
+							<input id="ctrl_next" type="checkbox" />
+						</li>
+						<li>
+							<label>ALT</label>
+							<input id="alt_next" type="checkbox" />
+						</li>
+						<li>
+							<label>SHIFT</label>
+							<input id="shift_next" type="checkbox" />
+						</li>
+						<li class="last">
+							<label>KEY</label>
+							<input id="key_next" class="key" type="text" />
+						</li>
+					</ul>
+				</li>
+				<li>
+					<button id="save"><span>Save settings</span></button>
+					<button id="load"><span>Load settings</span></button>
+					<button id="reset"><span>Reset settings</span></button>
+				</li>
+			</ul>
+		</fieldset>
+	</body>
+</html>

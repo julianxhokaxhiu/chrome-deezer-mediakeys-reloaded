@@ -1,0 +1,21 @@
+{
+	"update_url":"http://clients2.google.com/service/update2/crx",
+	"name":"Deezer Mediakeys Reloaded",
+	"version":"0.1",
+	"description":"Enable mediakeys when on Deezer but also from other tabs.",
+	"permissions":["tabs","http://*/*","https://*/*"],
+	"background_page":"background.html",
+	"options_page":"options.html",
+	"icons":{
+		"16":"img/icon_16.png",
+		"128":"img/icon_128.png"
+	},
+	"content_scripts":[
+		{
+		  "matches": ["http://*/*","https://*/*"],
+		  "permissions":["tabs","http://*/*","https://*/*"],
+		  "js": ["js/jquery-1.5.1.min.js","js/dzmkv2.js"],
+		  "run_at": "document_idle"
+		}
+	]
+}
