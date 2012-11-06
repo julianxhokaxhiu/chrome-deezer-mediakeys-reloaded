@@ -1,13 +1,13 @@
 {
 	"manifest_version":2,
 	"name":"Deezer Mediakeys Reloaded",
-	"version":"0.2",
+	"version":"0.3",
 	"description":"Enable mediakeys when on Deezer but also from other tabs.",
 	"permissions":["tabs","http://*/*","https://*/*"],
 	"background":{
 		"scripts":[
-			"js/jquery-1.7.2.min.js",
-			"js/const.js",
+			"js/jquery-1.8.2.min.js",
+			"js/init.js",
 			"background.js"
 		]
 	},
@@ -20,7 +20,7 @@
 		{
 		  "matches": ["http://*/*","https://*/*"],
 		  "permissions":["tabs","http://*/*","https://*/*"],
-		  "js": ["js/jquery-1.7.2.min.js","js/dzmkv2.js"],
+		  "js": ["js/jquery-1.8.2.min.js","js/init.js","js/dzmkv2.js"],
 		  "run_at": "document_idle"
 		}
 	]
