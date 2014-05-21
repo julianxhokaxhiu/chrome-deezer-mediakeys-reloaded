@@ -4,14 +4,14 @@ var mkListener = function(e){
 			case 176:
 				//NEXT_MK
 				chrome.extension.sendMessage({type:"tabid"},function(j){
-					if(j.isdz)$('#h_next a').click();
+					if(j.isdz)$('#player_control_next').click();
 					else chrome.extension.sendMessage({cmd:"next"});
 				});
 				break;
 			case 177:
 				//PREV_MK
 				chrome.extension.sendMessage({type:"tabid"},function(j){
-					if(j.isdz)$('#h_previous a').click();
+					if(j.isdz)$('#player_control_prev').click();
 					else chrome.extension.sendMessage({cmd:"prev"});
 				});
 				break;
@@ -22,8 +22,8 @@ var mkListener = function(e){
 				//PLAY_MK
 				chrome.extension.sendMessage({type:"tabid"},function(j){
 					if(j.isdz){
-						if($('#h_play a').is(':visible'))$('#h_play a').click();
-						else $('#h_pause a').click();
+						if($('#player_control_play').is(':visible'))$('#player_control_play').click();
+						else $('#player_control_pause').click();
 					}
 					else chrome.extension.sendMessage({cmd:"play_pause"});
 				});
@@ -31,16 +31,16 @@ var mkListener = function(e){
 		}
 	})
 }
-$(window).keyup(function(e){mkListener(e)});
+$(window).on('keyup', function(e){mkListener(e)});
 chrome.extension.onMessage.addListener(function(request,sender,sendResponse){
 	switch(request){
-		case 'next':$('#h_next a').click();
+		case 'next':$('#player_control_next').click();
 		break;
-		case 'prev':$('#h_previous a').click();
+		case 'prev':$('#player_control_prev').click();
 		break;
 		case 'play_pause':{
-			if($('#h_play a').is(':visible'))$('#h_play a').click();
-			else $('#h_pause a').click();
+			if($('#player_control_play').is(':visible'))$('#player_control_play').click();
+			else $('#player_control_pause').click();
 		}
 		break;
 		default:;
