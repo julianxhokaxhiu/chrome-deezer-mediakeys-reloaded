@@ -14,22 +14,19 @@
     },
     "commands": {
         "play-pause-track": {
-            "suggested_key": {
-                "windows": "MediaPlayPause"
-            },
-            "description": "Play/Pause Key"
+            "suggested_key": { "default": "MediaPlayPause" },
+            "description": "Play/Pause Key",
+            "global": true
         },
         "prev-track": {
-            "suggested_key": {
-                "windows": "MediaPrevTrack"
-            },
-            "description": "Prev Key"
+            "suggested_key": { "default": "MediaPrevTrack" },
+            "description": "Prev Key",
+            "global": true
         },
         "next-track": {
-            "suggested_key": {
-                "windows": "MediaNextTrack"
-            },
-            "description": "Next Key"
+            "suggested_key": { "default": "MediaNextTrack" },
+            "description": "Next Key",
+            "global": true
         }
     },
     "options_page": "options.html",
