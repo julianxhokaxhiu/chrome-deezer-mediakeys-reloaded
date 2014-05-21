@@ -1,18 +1,10 @@
 AUTHOR: Julian Xhokaxhiu
-VERSION: 0.2
-DESCRIPTION: Enable mediakeys when on Deezer but also from
-other tabs.
+VERSION: 0.4
+DESCRIPTION: Enable the mediakeys for Deezer
 
-HOW DOES IT WORK:
-When the content script execute into a tab, listen
-for every key that is pressed. When it does catch your multimedia
-keys, it sends a request to the background part, asking if the
-current tab is Deezer. If it is, it executes the command
-directly on the current page (useful for not looping through tabs
-when you're on Deezer, or when you use Deezer as a Web App),
-otherwise it loop through tabs of each window and, when it does find
-the first deezer window (or tab), it sends the command directly
-to it (without losing the focus over your current tab).
-It DOES send a message only TO THE FIRST window or tab that it find,
-which it mean that if you have multiple deezer windows or tabs,
-it will work only to the first you opened, not to the others.
+HOW IT WORKS:
+As a native desktop application, you just press play/pause button,
+prev or next and it will trigger the buttons for the web app :)
+Now also working in background (minimize Chrome and forget about it).
+
+Enjoy!

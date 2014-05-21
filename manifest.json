@@ -2,42 +2,45 @@
     "manifest_version": 2,
     "name": "Deezer Mediakeys Reloaded",
     "version": "0.4",
-    "description": "Enable mediakeys when on Deezer but also from other tabs.",
-    "permissions": ["tabs", "http://*/*", "https://*/*"],
+    "description": "Enable the use of MediaKeys for Deezer",
+    "permissions": [
+        "*://*.deezer.com/*"
+    ],
     "background": {
         "scripts": [
-            "js/jquery-2.1.1.min.js",
-            "js/init.js",
             "background.js"
         ],
         "persistent": false
     },
     "commands": {
-        "play-pause-track": {
+        "PLAY-PAUSE-MK": {
             "suggested_key": { "default": "MediaPlayPause" },
             "description": "Play/Pause Key",
             "global": true
         },
-        "prev-track": {
+        "PREV-MK": {
             "suggested_key": { "default": "MediaPrevTrack" },
             "description": "Prev Key",
             "global": true
         },
-        "next-track": {
+        "NEXT-MK": {
             "suggested_key": { "default": "MediaNextTrack" },
             "description": "Next Key",
             "global": true
         }
     },
-    "options_page": "options.html",
     "icons": {
         "16": "img/icon_16.png",
         "128": "img/icon_128.png"
     },
     "content_scripts": [{
-        "matches": ["http://*/*", "https://*/*"],
-        "permissions": ["tabs", "http://*/*", "https://*/*"],
-        "js": ["js/jquery-2.1.1.min.js", "js/init.js", "js/dzmkv2.js"],
+        "matches": [
+            "*://*.deezer.com/*"
+        ],
+        "js": [
+            "js/jquery-2.1.1.min.js",
+            "js/app.js"
+        ],
         "run_at": "document_idle"
     }]
 }
