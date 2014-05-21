@@ -1,27 +1,46 @@
 {
-	"manifest_version":2,
-	"name":"Deezer Mediakeys Reloaded",
-	"version":"0.3",
-	"description":"Enable mediakeys when on Deezer but also from other tabs.",
-	"permissions":["tabs","http://*/*","https://*/*"],
-	"background":{
-		"scripts":[
-			"js/jquery-1.8.2.min.js",
-			"js/init.js",
-			"background.js"
-		]
-	},
-	"options_page":"options.html",
-	"icons":{
-		"16":"img/icon_16.png",
-		"128":"img/icon_128.png"
-	},
-	"content_scripts":[
-		{
-		  "matches": ["http://*/*","https://*/*"],
-		  "permissions":["tabs","http://*/*","https://*/*"],
-		  "js": ["js/jquery-1.8.2.min.js","js/init.js","js/dzmkv2.js"],
-		  "run_at": "document_idle"
-		}
-	]
+    "manifest_version": 2,
+    "name": "Deezer Mediakeys Reloaded",
+    "version": "0.4",
+    "description": "Enable mediakeys when on Deezer but also from other tabs.",
+    "permissions": ["tabs", "http://*/*", "https://*/*"],
+    "background": {
+        "scripts": [
+            "js/jquery-2.1.1.min.js",
+            "js/init.js",
+            "background.js"
+        ],
+        "persistent": false
+    },
+    "commands": {
+        "play-pause-track": {
+            "suggested_key": {
+                "windows": "MediaPlayPause"
+            },
+            "description": "Play/Pause Key"
+        },
+        "prev-track": {
+            "suggested_key": {
+                "windows": "MediaPrevTrack"
+            },
+            "description": "Prev Key"
+        },
+        "next-track": {
+            "suggested_key": {
+                "windows": "MediaNextTrack"
+            },
+            "description": "Next Key"
+        }
+    },
+    "options_page": "options.html",
+    "icons": {
+        "16": "img/icon_16.png",
+        "128": "img/icon_128.png"
+    },
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "permissions": ["tabs", "http://*/*", "https://*/*"],
+        "js": ["js/jquery-2.1.1.min.js", "js/init.js", "js/dzmkv2.js"],
+        "run_at": "document_idle"
+    }]
 }

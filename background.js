@@ -4,7 +4,6 @@ chrome.extension.onMessage.addListener(function(request,sender,sendResponse){
 		var v = JSON.parse(window.localStorage.getItem(k));
 		var r = false;
 		if((request.keyCode==v.keyCode)&&(request.ctrlKey==v.ctrlKey)&&(request.altKey==v.altKey)&&(request.shiftKey==v.shiftKey))r = true;
-		console.log(request,v,k,r);
 		return r;
 	}
 	init();
@@ -30,4 +29,7 @@ chrome.extension.onMessage.addListener(function(request,sender,sendResponse){
 		sendResponse(r);
 	}
 	return true
+});
+chrome.commands.onCommand.addListener(function(command){
+	console.log('hello', command);
 });
