@@ -15,5 +15,9 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
 			else
 				$('#player_control_pause,button.control-pause').click();
 			break;
+		case 'STOP-MK':
+			//STOP_MK
+			$('#player_control_pause,button.control-pause').click();
+			break;			
 	}
 });
