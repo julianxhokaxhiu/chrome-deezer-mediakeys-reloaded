@@ -1,23 +1,22 @@
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
-	switch(request.action){
-		case 'NEXT-MK':
-			//NEXT_MK
-			$('#player_control_next,button.control-next').click();
-			break;
-		case 'PREV-MK':
-			//PREV_MK
-			$('#player_control_prev,button.control-prev').click();
-			break;
-		case 'PLAY-PAUSE-MK':
-			//PLAY_MK
-			if ( $('#player_control_play,button.control-play').is(':visible') )
-				$('#player_control_play,button.control-play').click();
-			else
-				$('#player_control_pause,button.control-pause').click();
-			break;
-		case 'STOP-MK':
-			//STOP_MK
-			$('#player_control_pause,button.control-pause').click();
-			break;			
-	}
+    var click_event = new MouseEvent('click', {
+        'view': window,
+        'bubbles': true,
+        'cancelable': true
+    });
+    switch(request.action){
+        case 'NEXT-MK':
+            document.getElementsByClassName('control-next')[0].dispatchEvent(click_event);
+            break;
+        case 'PREV-MK':
+            document.getElementsByClassName('control-prev')[0].dispatchEvent(click_event);
+            break;
+        case 'PLAY-PAUSE-MK':
+        case 'STOP-MK':
+            if ( document.getElementsByClassName('control-play').length > 0 )
+                document.getElementsByClassName('control-play')[0].dispatchEvent(click_event);
+            else
+                document.getElementsByClassName('control-pause')[0].dispatchEvent(click_event);
+            break;
+    }
 });
