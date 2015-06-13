@@ -11,8 +11,10 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
         case 'PREV-MK':
             document.getElementsByClassName('control-prev')[0].dispatchEvent(click_event);
             break;
-        case 'PLAY-PAUSE-MK':
         case 'STOP-MK':
+            if ( document.getElementsByClassName('control-pause').length > 0 )
+                document.getElementsByClassName('control-pause')[0].dispatchEvent(click_event);
+        case 'PLAY-PAUSE-MK':
             if ( document.getElementsByClassName('control-play').length > 0 )
                 document.getElementsByClassName('control-play')[0].dispatchEvent(click_event);
             else
