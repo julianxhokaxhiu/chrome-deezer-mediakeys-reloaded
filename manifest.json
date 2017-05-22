@@ -4,7 +4,8 @@
     "version": "0.6.2",
     "description": "Enable the use of MediaKeys for Deezer",
     "permissions": [
-        "*://*.deezer.com/*"
+        "*://*.deezer.com/*",
+        "notifications"
     ],
     "background": {
         "scripts": [
