@@ -11,3 +11,12 @@ chrome.commands.onCommand.addListener(function(command){
         }
     })
 });
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  chrome.notifications.create({
+    type: "basic",
+    iconUrl: "img/icon_128.png",
+    title: request.song,
+    message: request.artist
+  });
+});
