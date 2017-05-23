@@ -1,6 +1,6 @@
 window.addEventListener('load', function() {
     var currentSong = document.querySelector('.player-track-title').textContent,
-        song, artist;
+        song, artist, cover;
 
     function notify() {
       song = document.querySelector('.player-track-title').textContent;
@@ -8,8 +8,9 @@ window.addEventListener('load', function() {
       if (song !== currentSong) {
         artist = document.querySelector('.player-track-artist').textContent;
         artist = artist.replace('by ', '');
+        cover  = document.querySelector('#player-cover img').getAttribute('src');
 
-        chrome.runtime.sendMessage({artist: artist, song: song});
+        chrome.runtime.sendMessage({artist: artist, song: song, cover: cover});
         currentSong = song;
       }
     }
