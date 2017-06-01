@@ -20,3 +20,11 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     message: request.artist
   });
 });
+
+chrome.runtime.onInstalled.addListener(function (details) {
+  if (details.reason === "install") {
+    chrome.storage.sync.set({
+        "notifications" : true
+    });
+  }
+});

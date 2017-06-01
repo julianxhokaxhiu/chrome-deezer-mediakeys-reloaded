@@ -3,19 +3,20 @@ window.addEventListener('load', function() {
         song, artist, cover;
 
     function notify() {
-      song = document.querySelector('.player-track-title').textContent;
+        chrome.storage.sync.get("notifications", function (obj) {
+            song = document.querySelector('.player-track-title').textContent;
 
-      if (song !== currentSong) {
-        artist = document.querySelector('.player-track-artist').textContent;
-        artist = artist.replace('by ', '');
-        cover  = document.querySelector('#player-cover img').getAttribute('src');
+            if (obj.notifications && song !== currentSong) {
+                artist = document.querySelector('.player-track-artist').textContent;
+                artist = artist.replace('by ', '');
+                cover  = document.querySelector('#player-cover img').getAttribute('src');
 
-        chrome.runtime.sendMessage({artist: artist, song: song, cover: cover});
-        currentSong = song;
-      }
+                chrome.runtime.sendMessage({artist: artist, song: song, cover: cover});
+                currentSong = song;
+            }
+        });
     }
-
-    setInterval(function() { notify(); }, 1000);
+    setInterval(notify, 1000);
 });
 
 chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){

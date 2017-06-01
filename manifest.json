@@ -3,9 +3,15 @@
     "name": "Deezer Mediakeys Reloaded",
     "version": "0.7.0",
     "description": "Enable the use of MediaKeys for Deezer",
+    "options_ui": {
+      "page": "options.html",
+      "chrome_style": true
+    },
+    "options_page": "options.html",
     "permissions": [
         "*://*.deezer.com/*",
-        "notifications"
+        "notifications",
+        "storage"
     ],
     "background": {
         "scripts": [
