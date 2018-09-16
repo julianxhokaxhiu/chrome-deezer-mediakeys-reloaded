@@ -56,7 +56,10 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
                 document.getElementsByClassName('svg-icon-pause')[0].parentNode.dispatchEvent(click_event);
             break;
         case 'PLAY-PAUSE-MK':
-            document.getElementsByClassName('svg-icon-play')[0].parentNode.dispatchEvent(click_event);
+            if (document.getElementsByClassName('svg-icon-pause').length > 0)
+                document.getElementsByClassName('svg-icon-pause')[0].parentNode.dispatchEvent(click_event);
+            else
+                document.getElementsByClassName('svg-icon-play')[0].parentNode.dispatchEvent(click_event);
             if (!currentSong) setInterval(notify, 1000);
             break;
     }
