@@ -1,15 +1,14 @@
 window.addEventListener('load', function() {
-    var currentSong = document.querySelector('.player-track-title').textContent,
+    var currentSong = document.querySelector('.track-title').textContent,
         song, artist, cover;
 
     function notify() {
         chrome.storage.sync.get("notifications", function (obj) {
-            song = document.querySelector('.player-track-title').textContent;
+            song = document.querySelector('.track-title').textContent;
 
             if (obj.notifications && song !== currentSong) {
-                artist = document.querySelector('.player-track-artist').textContent;
-                artist = artist.replace('by ', '');
-                cover  = document.querySelector('#player-cover img').getAttribute('src');
+                artist = song.split(' · ')[1];
+                cover = document.querySelector('.player-options figure.thumbnail img').getAttribute('src');
 
                 chrome.runtime.sendMessage({artist: artist, song: song, cover: cover});
                 currentSong = song;
@@ -28,17 +27,17 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
 
     switch(request.action){
         case 'NEXT-MK':
-            document.getElementsByClassName('control-next')[0].dispatchEvent(click_event);
+            document.getElementsByClassName('svg-icon-next')[0].parentNode.dispatchEvent(click_event);
             break;
         case 'PREV-MK':
-            document.getElementsByClassName('control-prev')[0].dispatchEvent(click_event);
+            document.getElementsByClassName('svg-icon-prev')[0].parentNode.dispatchEvent(click_event);
             break;
         case 'STOP-MK':
-            if ( document.getElementsByClassName('control-pause').length > 0 )
-                document.getElementsByClassName('control-pause')[0].dispatchEvent(click_event);
+            if (document.getElementsByClassName('svg-icon-pause').length > 0)
+                document.getElementsByClassName('svg-icon-pause')[0].parentNode.dispatchEvent(click_event);
             break;
         case 'PLAY-PAUSE-MK':
-            document.getElementsByClassName('control-play')[0].dispatchEvent(click_event);
+            document.getElementsByClassName('svg-icon-play')[0].parentNode.dispatchEvent(click_event);
             break;
     }
 });
