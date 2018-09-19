@@ -43,23 +43,24 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse){
         'bubbles': true,
         'cancelable': true
     });
+    var player = document.getElementById('page_player') || document.getElementById('player');
 
     switch(request.action){
         case 'NEXT-MK':
-            document.getElementsByClassName('svg-icon-next')[0].parentNode.dispatchEvent(click_event);
+            player.getElementsByClassName('svg-icon-next')[0].parentNode.dispatchEvent(click_event);
             break;
         case 'PREV-MK':
-            document.getElementsByClassName('svg-icon-prev')[0].parentNode.dispatchEvent(click_event);
+            player.getElementsByClassName('svg-icon-prev')[0].parentNode.dispatchEvent(click_event);
             break;
         case 'STOP-MK':
-            if (document.getElementsByClassName('svg-icon-pause').length > 0)
-                document.getElementsByClassName('svg-icon-pause')[0].parentNode.dispatchEvent(click_event);
+            if (player.getElementsByClassName('svg-icon-pause').length > 0)
+                player.getElementsByClassName('svg-icon-pause')[0].parentNode.dispatchEvent(click_event);
             break;
         case 'PLAY-PAUSE-MK':
-            if (document.getElementsByClassName('svg-icon-pause').length > 0)
-                document.getElementsByClassName('svg-icon-pause')[0].parentNode.dispatchEvent(click_event);
+            if (player.getElementsByClassName('svg-icon-pause').length > 0)
+                player.getElementsByClassName('svg-icon-pause')[0].parentNode.dispatchEvent(click_event);
             else
-                document.getElementsByClassName('svg-icon-play')[0].parentNode.dispatchEvent(click_event);
+                player.getElementsByClassName('svg-icon-play')[0].parentNode.dispatchEvent(click_event);
             if (!currentSong) setInterval(notify, 1000);
             break;
     }
